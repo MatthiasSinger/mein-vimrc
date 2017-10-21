@@ -1,7 +1,14 @@
 imap jj <ESC>
-set nocompatible
-execute pathogen#infect()
+call plug#begin()
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'altercation/vim-colors-solarized'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+call plug#end()
 
+let g:syntastic_c_checkers = ['clang_check', 'gcc' ]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: 
 "       Amir Salihefendic
@@ -63,6 +70,7 @@ let g:mapleader = ","
 
 " Fast saving
 nmap <leader>w :w!<cr>
+nmap <leader>b :NERDTree .<cr>
 
 " :W sudo saves the file 
 " (useful for handling the permission-denied error)
@@ -156,7 +164,7 @@ if $COLORTERM == 'gnome-terminal'
 endif
 
 try
-    colorscheme desert
+    colorscheme solarized
 catch
 endtry
 
@@ -399,3 +407,5 @@ function! VisualSelection(direction, extra_filter) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
+
+
